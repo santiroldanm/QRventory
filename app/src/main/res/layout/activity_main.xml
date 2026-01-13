@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:orientation="vertical">
+
+    <!-- Encabezado: Logo + Botón modo seriales -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo"
+            android:contentDescription="Logo" />
+
+        <Space android:layout_width="16dp" android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btnModoSeriales"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Modo Seriales"
+                android:backgroundTint="@color/verde"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnModoLotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Modo Lotes"
+                android:backgroundTint="@color/verde"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!-- Contenido principal con scroll -->
+    <ScrollView
+        android:id="@+id/scrollContenido"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <!-- Botón conectar -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConectarDrive"
+                android:text="Conectar con Google Drive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/verde"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Texto archivo -->
+            <TextView
+                android:id="@+id/textRutaArchivo"
+                android:text="Archivo no seleccionado"
+                android:textColor="#DDDDDD"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Selector archivo -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btnArchivoLocal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Archivo Local"
+                    android:backgroundTint="@color/verde"
+                    android:textColor="#FFFFFF"
+                    android:padding="12dp" />
+
+                <Space
+                    android:layout_width="12dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnArchivoDrive"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Archivo Drive"
+                    android:backgroundTint="@color/verde"
+                    android:textColor="#FFFFFF"
+                    android:padding="12dp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editColumna"
+                android:hint="Columna de cantidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:inputType="textCapCharacters"
+                android:padding="12dp"
+                android:maxLength="1"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/editColumnaSerial"
+                android:hint="Columna para serial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:padding="12dp"
+                android:maxLength="1"
+                android:inputType="textCapCharacters"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/editColumnaLote"
+                android:hint="Columna de cantidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:padding="12dp"
+                android:inputType="textCapCharacters"
+                android:maxLength="1"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <EditText
+                    android:id="@+id/editNombreProducto"
+                    android:hint="Buscar por nombre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/edittext_bg"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#BBBBBB"
+                    android:padding="12dp"
+                    android:inputType="text" />
+
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnBuscarNombre"
+                    android:text="Buscar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/verde"
+                    android:textColor="#FFFFFF"
+                    android:padding="12dp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editCodigo"
+                android:hint="Código del producto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/editCantidad"
+                android:hint="Cantidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:inputType="number"
+                android:padding="12dp"
+                android:layout_marginBottom="6dp" />
+
+
+            <EditText
+                android:id="@+id/editCodigoSerial"
+                android:hint="Código del producto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:padding="12dp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/editVarianteSerial"
+                android:hint="Variante (serial)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:padding="12dp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:id="@+id/layoutLotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/editCodigoLote"
+                    android:hint="Código del producto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_bg"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#BBBBBB"
+                    android:padding="12dp"
+                    android:layout_marginBottom="12dp" />
+
+                <EditText
+                    android:id="@+id/editVarianteLote"
+                    android:hint="Variante (Serial)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_bg"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#BBBBBB"
+                    android:padding="12dp"
+                    android:layout_marginBottom="12dp" />
+
+                <EditText
+                    android:id="@+id/editCantidadLote"
+                    android:hint="Cantidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_bg"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#BBBBBB"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:layout_marginBottom="12dp" />
+
+
+            </LinearLayout>
+
+            <!-- Botones QR y Actualizar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- Boton QR -->
+                <Button
+                    android:id="@+id/btnLeerQR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Leer QR"
+                    android:backgroundTint="@color/verde"
+                    android:textColor="#FFFFFF"
+                    android:padding="12dp" />
+
+                <!-- Espacio entre botones -->
+                <Space
+                    android:id="@+id/espacioEntreBotones"
+                    android:layout_width="8dp"
+                    android:layout_height="wrap_content" />
+
+                <!-- Boton Actualizar Normal -->
+                <Button
+                    android:id="@+id/btnActualizar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Actualizar"
+                    android:backgroundTint="@color/verde"
+                    android:textColor="#FFFFFF"
+                    android:padding="12dp" />
+
+                <!-- Boton Actualizar Serial -->
+                <Button
+                    android:id="@+id/btnActualizarSerial"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Actualizar"
+                    android:backgroundTint="@color/purple_500"
+                    android:textColor="#FFFFFF"
+                    android:padding="12dp"
+                    android:visibility="gone" />
+
+                <!-- Boton Actualizar Lote -->
+                <Button
+                    android:id="@+id/btnActualizarLote"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Actualizar"
+                    android:backgroundTint="@color/blue"
+                    android:textColor="#FFFFFF"
+                    android:padding="12dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+
+
+
+            <TextView
+                android:id="@+id/textEstado"
+                android:text=""
+                android:textColor="#888888"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
