@@ -426,18 +426,17 @@ class MainActivity : AppCompatActivity() {
                             nombreMayus.startsWith("POLIESTER PLATA")||
                             nombreMayus.startsWith("CARTON GRAFA")
 
-                    if (requiereMultiplicador) {
-                        mostrarDialogoMultiplicador(cantidad!!) { nuevaCantidad ->
-                            if (nuevaCantidad != null) {
-                                aplicarActualizacion(nuevaCantidad)
-                            } else {
-                                // Reactivar botón o restaurar estado si se canceló
-                                reactivarBotonActualizar() // Esta función debes implementarla si necesitas reactivar algo
-                            }
-                        }
+                    val multiplicador = if (requiereMultiplicador) {
+                        extraerMultiplicadorDesdeNombre(nombreProducto)
+                    } else null
+
+                    val cantidadFinal = if (multiplicador != null) {
+                        cantidad!! * multiplicador
                     } else {
-                        aplicarActualizacion(cantidad!!)
+                        cantidad!!
                     }
+
+                    aplicarActualizacion(cantidadFinal)
                 }
 
             }.start()
@@ -656,6 +655,13 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
         return resultados
+    }
+
+    private fun extraerMultiplicadorDesdeNombre(nombre: String): Int? {
+        // Soporta: 65X25.4X3000, 50x25x1000, 100X200X500, etc.
+        val regex = Regex("""\d+(?:\.\d+)?\s*[xX]\s*\d+(?:\.\d+)?\s*[xX]\s*(\d+)""")
+        val match = regex.find(nombre)
+        return match?.groupValues?.getOrNull(1)?.toIntOrNull()
     }
 
     // --- Lógica de actualización Excel con manejo de tipos de celda (archivo local) ---
